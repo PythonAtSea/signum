@@ -27,6 +27,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <header className="p-6 border-b border-border">
+          <h1 className="text-xl font-bold">Signum</h1>
+        </header>
         {children}
       </body>
     </html>
