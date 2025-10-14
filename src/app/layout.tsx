@@ -29,7 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col font-mono`}
       >
         <header className="p-6 border-b border-border bg-background">
-          <h1 className="text-xl font-bold">Signum.</h1>
+          <h1 className="text-xl font-extrabold">Signum.</h1>
         </header>
         <div className="p-6 flex-grow">{children}</div>
         <footer className="p-6 border-t border-border bg-background">
