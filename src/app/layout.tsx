@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Cascadia_Code } from "next/font/google";
 import "./globals.css";
 import { Heart } from "lucide-react";
 
@@ -11,6 +11,11 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const cascadiaCode = Cascadia_Code({
+  variable: "--font-cascadia-code",
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -26,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col font-mono`}
+        className={`${geistSans.variable} ${geistMono.variable} ${cascadiaCode.variable} antialiased min-h-screen flex flex-col font-mono`}
       >
         <header className="p-6 border-b border-border bg-background">
           <h1 className="text-xl font-extrabold">Signum.</h1>

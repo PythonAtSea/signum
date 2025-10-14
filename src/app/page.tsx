@@ -1,10 +1,8 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
 import Art from "../components/art";
 
 export default function Home() {
-  const [inputValue, setInputValue] = useState("");
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-xl font-bold">
