@@ -586,7 +586,7 @@ export default function Art() {
 
   return (
     <div className="border border-border bg-background flex flex-col items-center justify-center">
-      <pre className="font-code text-[clamp(1px,calc((100vw-48px)/100),20px)] leading-[calc(clamp(1px,calc((100vw-48px)/100),20px)*0.8425)] tracking-[-.08em]">
+      <pre className="font-code text-[clamp(1px,calc((100vw-48px)/100),20px)] leading-[calc(clamp(1px,calc((100vw-48px)/100),20px)*0.87)] tracking-[-.09em]">
         {displayText}
       </pre>
     </div>
