@@ -1,26 +1,32 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Slider } from "@/components/ui/slider";
 import { Play, Volume2, VolumeOff, Square } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function Page() {
   const [text, setText] = useState("");
   const [morse, setMorse] = useState("");
-  const [audio, setAudio] = useState(false);
+  const [audio, setAudio] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentOscillator, setCurrentOscillator] =
     useState<OscillatorNode | null>(null);
-  const [beepBackground, setBeepBackground] = useState("bg-muted");
+  const [beepBackground, setBeepBackground] = useState("bg-background");
   const [backgroundTimeouts, setBackgroundTimeouts] = useState<number[]>([]);
+  const [unit, setUnit] = useState(0.1);
+  const [audioContext, setAudioContext] = useState<AudioContext | null>(null);
 
-  const audioContext = new (window.AudioContext ||
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (window as any).webkitAudioContext)();
-  const oscillator = audioContext.createOscillator();
-  const gainNode = audioContext.createGain();
-  oscillator.connect(gainNode);
-  gainNode.connect(audioContext.destination);
+  useEffect(() => {
+    const context = new (window.AudioContext ||
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window as any).webkitAudioContext)();
+    setAudioContext(context);
+
+    return () => {
+      context.close();
+    };
+  }, []);
 
   const morseDictionary: { [key: string]: string } = {
     A: ".-",
@@ -82,7 +88,7 @@ export default function Page() {
   }, [text]);
 
   const playMorseCode = async () => {
-    if (isPlaying) return;
+    if (isPlaying || !audioContext) return;
     backgroundTimeouts.forEach(clearTimeout);
     setBackgroundTimeouts([]);
     await audioContext.resume();
@@ -94,7 +100,6 @@ export default function Page() {
     gainNode.gain.value = 0;
 
     let time = audioContext.currentTime;
-    const unit = 0.1;
     let totalTime = 0;
 
     morse.split("").forEach((symbol) => {
@@ -119,7 +124,7 @@ export default function Page() {
     oscillator.onended = () => {
       setIsPlaying(false);
       setCurrentOscillator(null);
-      setBeepBackground("bg-muted");
+      setBeepBackground("bg-background");
       backgroundTimeouts.forEach(clearTimeout);
       setBackgroundTimeouts([]);
     };
@@ -143,7 +148,7 @@ export default function Page() {
           }
           newTimeouts.push(
             setTimeout(
-              () => setBeepBackground("bg-muted"),
+              () => setBeepBackground("bg-background"),
               (time - audioContext.currentTime) * 1000
             ) as unknown as number
           );
@@ -165,7 +170,7 @@ export default function Page() {
           }
           newTimeouts.push(
             setTimeout(
-              () => setBeepBackground("bg-muted"),
+              () => setBeepBackground("bg-background"),
               (time - audioContext.currentTime) * 1000
             ) as unknown as number
           );
@@ -219,12 +224,22 @@ export default function Page() {
               onClick={() => setAudio(!audio)}
               variant="ghost"
               className="ml-2"
+              disabled={isPlaying}
             >
               {audio ? <Volume2 /> : <VolumeOff />}
             </Button>
             <div
               className={`flex-1 ${beepBackground} h-9 ml-2 border border-border`}
-            ></div>
+            />
+            <Slider
+              value={[unit]}
+              onValueChange={(value) => setUnit(value[0])}
+              min={0.05}
+              max={0.5}
+              step={0.01}
+              className="w-32 mx-2"
+            />
+            <div>{unit.toFixed(2)}s</div>
           </div>
         </div>
       )}
