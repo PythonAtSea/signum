@@ -35,7 +35,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${cascadiaCode.variable} antialiased min-h-screen flex flex-col font-mono`}
       >
         <header className="p-6 border-b border-border bg-background">
-          <Link href="/" className="text-xl font-extrabold">
+          <Link href="/" className="text-xl font-extrabold italic">
             Signum.
           </Link>
         </header>

@@ -6,21 +6,60 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-xl font-bold">
-        An interactive exploration of an older form of communication.
+        An interactive exploration of two different encoding systems, from very
+        different eras.
       </h1>
       <Art />
-      <Link
-        href="/eng-to-morse"
-        className="text-2xl font-bold text-blue-500 hover:underline w-fit"
-      >
-        English {`=>`} Morse Code
-      </Link>
-      <Link
-        href="/morse-to-eng"
-        className="text-2xl font-bold text-blue-500 hover:underline w-fit"
-      >
-        Morse Code {`=>`} English
-      </Link>
+      <div className="gap-2 flex flex-col">
+        <h2 className="font-bold text-lg">Morse Code:</h2>
+        <ul className="gap-2 flex flex-col list-disc list-inside">
+          <li>
+            <Link
+              href="/morse-history"
+              className="text-2xl font-bold text-blue-500 hover:underline w-fit"
+            >
+              Morse Code History
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/eng-to-morse"
+              className="text-2xl font-bold text-blue-500 hover:underline w-fit"
+            >
+              English {`=>`} Morse Code
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/morse-to-eng"
+              className="text-2xl font-bold text-blue-500 hover:underline w-fit"
+            >
+              Morse Code {`=>`} English
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <div className="gap-2 flex flex-col">
+        <h2 className="font-bold text-lg">Binary:</h2>
+        <ul className="gap-2 flex flex-col list-disc list-inside">
+          <li>
+            <Link
+              href="/binary-history"
+              className="text-2xl font-bold text-blue-500 hover:underline w-fit"
+            >
+              Binary History
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/binary"
+              className="text-2xl font-bold text-blue-500 hover:underline w-fit"
+            >
+              Binary {`<=>`} English
+            </Link>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }
