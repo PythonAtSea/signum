@@ -197,12 +197,15 @@ export default function Page() {
 
   return (
     <div className="max-w-4xl justify-self-center w-full">
-      <h1 className="text-2xl font-bold">English to Morse Code Translator</h1>
+      <h1 className="text-2xl font-bold">English to Morse Code</h1>
       <Input
         placeholder="Text..."
         className="bg-background"
         value={text}
-        onChange={(e) => setText(e.target.value)}
+        onChange={(e) => {
+          setText(e.target.value);
+          if (isPlaying) stopMorseCode();
+        }}
       />
       {morse.length > 0 && (
         <div className="mt-4 p-4 border bg-muted">
