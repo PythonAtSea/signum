@@ -40,22 +40,22 @@ export default function Home() {
         </ul>
       </div>
       <div className="gap-2 flex flex-col">
-        <h2 className="font-bold text-lg">Binary:</h2>
+        <h2 className="font-bold text-lg">ASCII:</h2>
         <ul className="gap-2 flex flex-col list-disc list-inside">
           <li>
             <Link
-              href="/binary-history"
+              href="/ascii-history"
               className="text-2xl font-bold text-blue-500 hover:underline w-fit"
             >
-              Binary History
+              ASCII History
             </Link>
           </li>
           <li>
             <Link
-              href="/binary"
+              href="/ascii"
               className="text-2xl font-bold text-blue-500 hover:underline w-fit"
             >
-              Binary {`<=>`} English
+              ASCII {`<=>`} English
             </Link>
           </li>
         </ul>

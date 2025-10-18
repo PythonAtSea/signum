@@ -54,6 +54,7 @@ export default function Page() {
         the signals as they were received.
       </p>
       <Art manualImageIndex={1} imageCaption="Self portrait of Samuel Morse" />
+      <Art manualImageIndex={2} imageCaption="Alfred Vail" className="mt-4" />
       <h2 className="text-xl font-bold mt-6 mb-2">
         Change from graphical to audible signals.
       </h2>
