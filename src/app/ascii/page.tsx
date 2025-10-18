@@ -42,7 +42,7 @@ export default function Page() {
   };
 
   return (
-    <div className="max-w-4xl justify-self-center w-full">
+    <div className="max-w-2xl justify-self-center w-full">
       <h1 className="text-2xl font-bold mb-6">ASCII {`<=>`} English</h1>
       <Label htmlFor="english-input" className="mb-2">
         Enter English text, including all unicode characters:

@@ -196,7 +196,7 @@ export default function Page() {
   };
 
   return (
-    <div className="max-w-4xl justify-self-center w-full">
+    <div className="max-w-2xl justify-self-center w-full">
       <h1 className="text-2xl font-bold">English to Morse Code</h1>
       <Input
         placeholder="Text..."
