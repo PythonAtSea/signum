@@ -1,4 +1,5 @@
 import Art from "@/components/art";
+import { MorseChart } from "@/components/morse-chart";
 import Link from "next/link";
 
 export default function Page() {
@@ -82,6 +83,10 @@ export default function Page() {
         International Morse Code in 1865, with some modifications, such as
         redesigning the codes for numbers.
       </p>
+      <h3 className="text-lg font-semibold mb-2 mt-6">
+        International Morse Code
+      </h3>
+      <MorseChart />
       <h2 className="text-xl font-bold mt-6 mb-2">
         Radiotelegraphy and aviation
       </h2>
