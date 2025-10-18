@@ -2,6 +2,8 @@
 import { useState, useRef } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { Check, Copy } from "lucide-react";
 
 const DEMO_TEXT = "hello";
 
@@ -26,6 +28,10 @@ export default function Page() {
   const [englishText, setEnglishText] = useState("");
   const [asciiText, setASCIIText] = useState("");
   const sourceRef = useRef<"english" | "ascii" | null>(null);
+  const [englishCopyIcon, setEnglishCopyIcon] = useState<"copy" | "check">(
+    "copy"
+  );
+  const [asciiCopyIcon, setASCIICopyIcon] = useState<"copy" | "check">("copy");
 
   const handleEnglishChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -47,23 +53,53 @@ export default function Page() {
       <Label htmlFor="english-input" className="mb-2">
         Enter English text, including all unicode characters:
       </Label>
-      <Input
-        id="english-input"
-        placeholder={DEMO_TEXT}
-        className="mb-6 bg-background"
-        value={englishText}
-        onChange={handleEnglishChange}
-      />
+      <div className="flex flex-row gap-2">
+        <Input
+          id="english-input"
+          placeholder={DEMO_TEXT}
+          className="mb-6 bg-background"
+          value={englishText}
+          onChange={handleEnglishChange}
+        />
+        <Button
+          onClick={() => {
+            navigator.clipboard.writeText(englishText);
+            setEnglishCopyIcon("check");
+            setTimeout(() => setEnglishCopyIcon("copy"), 2000);
+          }}
+        >
+          {englishCopyIcon === "copy" ? (
+            <Copy className="h-4 w-4" />
+          ) : (
+            <Check className="h-4 w-4" />
+          )}
+        </Button>
+      </div>
       <Label htmlFor="ascii-input" className="mb-2">
         Enter ASCII with bytes separated by spaces:
       </Label>
-      <Input
-        id="ascii-input"
-        placeholder={englishToASCII(DEMO_TEXT)}
-        className="mb-6 bg-background"
-        value={asciiText}
-        onChange={handleASCIIChange}
-      />
+      <div className="flex flex-row gap-2">
+        <Input
+          id="ascii-input"
+          placeholder={englishToASCII(DEMO_TEXT)}
+          className="mb-6 bg-background"
+          value={asciiText}
+          onChange={handleASCIIChange}
+        />
+        <Button
+          onClick={() => {
+            navigator.clipboard.writeText(asciiText);
+            setASCIICopyIcon("check");
+            setTimeout(() => setASCIICopyIcon("copy"), 2000);
+          }}
+        >
+          {asciiCopyIcon === "copy" ? (
+            <Copy className="h-4 w-4" />
+          ) : (
+            <Check className="h-4 w-4" />
+          )}
+        </Button>
+      </div>
     </div>
   );
 }

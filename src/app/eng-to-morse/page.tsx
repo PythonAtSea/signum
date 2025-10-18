@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
-import { Play, Volume2, VolumeOff, Square } from "lucide-react";
+import { Play, Volume2, VolumeOff, Square, Copy, Check } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function Page() {
@@ -16,6 +16,7 @@ export default function Page() {
   const [backgroundTimeouts, setBackgroundTimeouts] = useState<number[]>([]);
   const [unit, setUnit] = useState(0.1);
   const [audioContext, setAudioContext] = useState<AudioContext | null>(null);
+  const [copyIcon, setCopyIcon] = useState<"copy" | "check">("copy");
 
   useEffect(() => {
     const context = new (window.AudioContext ||
@@ -210,7 +211,26 @@ export default function Page() {
       {morse.length > 0 && (
         <div className="mt-4 p-4 border bg-muted">
           <h2 className="text-lg font-semibold mb-2">Morse Code:</h2>
-          <p className="whitespace-pre-wrap">{morse}</p>
+          <div className="flex flex-row gap-2">
+            <Input
+              className="whitespace-pre-wrap bg-background"
+              value={morse}
+              readOnly
+            />
+            <Button
+              onClick={() => {
+                navigator.clipboard.writeText(morse);
+                setCopyIcon("check");
+                setTimeout(() => setCopyIcon("copy"), 2000);
+              }}
+            >
+              {copyIcon === "copy" ? (
+                <Copy className="h-4 w-4" />
+              ) : (
+                <Check className="h-4 w-4" />
+              )}
+            </Button>
+          </div>
           <div className="flex items-center mt-2">
             <Button
               onClick={() => {

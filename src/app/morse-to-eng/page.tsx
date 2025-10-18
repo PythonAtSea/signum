@@ -1,6 +1,8 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Kbd } from "@/components/ui/kbd";
+import { Check, Copy } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
 const UNIT = 100;
@@ -52,12 +54,14 @@ export default function Page() {
   const [english, setEnglish] = useState("");
   const [beeping, setBeeping] = useState(false);
   const [inputFocused, setInputFocused] = useState(false);
+  const [copyIcon, setCopyIcon] = useState<"copy" | "check">("copy");
 
   const pressStartTimeRef = useRef<number | null>(null);
   const lastReleaseTimeRef = useRef<number | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const isPressingRef = useRef<boolean>(false);
   const spaceAddedRef = useRef<boolean>(false);
+
   useEffect(() => {
     if (!morse.trim()) {
       setEnglish("");
@@ -189,7 +193,27 @@ export default function Page() {
       )*/}
       {english.length > 0 && (
         <div className="mt-4 p-4 border bg-muted">
-          <p className="whitespace-pre-wrap">{english}</p>
+          <h2 className="text-lg font-semibold mb-2">English:</h2>
+          <div className="flex flex-row gap-2">
+            <Input
+              className="whitespace-pre-wrap bg-background"
+              value={english}
+              readOnly
+            />
+            <Button
+              onClick={() => {
+                navigator.clipboard.writeText(english);
+                setCopyIcon("check");
+                setTimeout(() => setCopyIcon("copy"), 2000);
+              }}
+            >
+              {copyIcon === "copy" ? (
+                <Copy className="h-4 w-4" />
+              ) : (
+                <Check className="h-4 w-4" />
+              )}
+            </Button>
+          </div>
         </div>
       )}
     </div>
