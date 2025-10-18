@@ -22,7 +22,10 @@ export default function Page() {
         on the other, so that the operator could write down the signals based on
         the sound.
       </p>
-      <Art manualImageIndex={0} />
+      <Art
+        manualImageIndex={0}
+        imageCaption="Single needle telegraph instrument"
+      />
       <h2 className="text-xl font-bold mt-6 mb-2">
         Samuel Morse and Alfred Vail
       </h2>
@@ -50,6 +53,7 @@ export default function Page() {
         dot. Morse also developed a device that indented a paper tape to record
         the signals as they were received.
       </p>
+      <Art manualImageIndex={1} imageCaption="Self portrait of Samuel Morse" />
       <h2 className="text-xl font-bold mt-6 mb-2">
         Change from graphical to audible signals.
       </h2>
