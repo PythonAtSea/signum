@@ -23,6 +23,12 @@ export default function Page() {
   const { Image } = useQRCode();
   const [text, setText] = useState("");
   const [errorCorrectionLevel, setErrorCorrectionLevel] = useState("M");
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const insertExample = (example: string) => {
+    setText(example);
+    setIsDialogOpen(false);
+  };
 
   const maxLengthByLevel: Record<string, number> = {
     L: 2953,
@@ -51,7 +57,7 @@ export default function Page() {
             onChange={(e) => setText(e.target.value)}
             maxLength={maxLength}
           />
-          <Dialog>
+          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger>
               <Info className="size-9 px-2.5 border border-border" />
             </DialogTrigger>
@@ -62,84 +68,117 @@ export default function Page() {
               <div className="space-y-4">
                 <div>
                   <h2 className="text-lg font-semibold">Website</h2>
-                  <p>
+                  <button
+                    onClick={() => insertExample("https://example.com")}
+                    className="text-left w-full hover:bg-muted p-2 transition-colors"
+                  >
                     <code className="bg-muted px-1.5 py-0.5 font-mono text-sm">
                       https://
                       <span className=" text-purple-500 font-bold">[url]</span>
                     </code>
-                  </p>
+                  </button>
                 </div>
                 <div>
                   <h2 className="text-lg font-semibold">Email</h2>
-                  <p>
+                  <button
+                    onClick={() => insertExample("mailto:example@email.com")}
+                    className="text-left w-full hover:bg-muted p-2 transition-colors"
+                  >
                     <code className="bg-muted px-1.5 py-0.5 font-mono text-sm">
                       mailto:
                       <span className=" text-purple-500 font-bold">
                         [email]
                       </span>
                     </code>
-                  </p>
+                  </button>
                 </div>
                 <div>
                   <h2 className="text-lg font-semibold">Phone Number</h2>
-                  <p>
+                  <button
+                    onClick={() => insertExample("tel:+1234567890")}
+                    className="text-left w-full hover:bg-muted p-2 colors"
+                  >
                     <code className="bg-muted px-1.5 py-0.5 font-mono text-sm">
                       tel:
                       <span className=" text-purple-500 font-bold">
                         [phone]
                       </span>
                     </code>
-                  </p>
+                  </button>
                 </div>
                 <div>
                   <h2 className="text-lg font-semibold">SMS</h2>
-                  <p>
+                  <button
+                    onClick={() => insertExample("sms:+1234567890")}
+                    className="text-left w-full hover:bg-muted p-2 transition-colors"
+                  >
                     <code className="bg-muted px-1.5 py-0.5 font-mono text-sm">
                       sms:
                       <span className=" text-purple-500 font-bold">
                         [phone]
                       </span>
                     </code>
-                  </p>
+                  </button>
                 </div>
                 <div>
                   <h2 className="text-lg font-semibold">Facetime</h2>
-                  <p>
+                  <button
+                    onClick={() => insertExample("facetime:+1234567890")}
+                    className="text-left w-full hover:bg-muted p-2 transition-colors"
+                  >
                     <code className="bg-muted px-1.5 py-0.5 font-mono text-sm">
                       facetime:
                       <span className=" text-purple-500 font-bold">
                         [phone]
                       </span>
                     </code>
-                  </p>
-                  <p>
+                  </button>
+                  <button
+                    onClick={() => insertExample("facetime:example@email.com")}
+                    className="text-left w-full hover:bg-muted p-2 transition-colors"
+                  >
                     <code className="bg-muted px-1.5 py-0.5 font-mono text-sm">
                       facetime:
                       <span className=" text-purple-500 font-bold">
                         [email]
                       </span>
                     </code>
-                  </p>
-                  <p>
+                  </button>
+                  <button
+                    onClick={() => insertExample("facetime-audio:+1234567890")}
+                    className="text-left w-full hover:bg-muted p-2 transition-colors"
+                  >
                     <code className="bg-muted px-1.5 py-0.5 font-mono text-sm">
                       facetime-audio:
                       <span className=" text-purple-500 font-bold">
                         [phone]
                       </span>
                     </code>
-                  </p>
-                  <p>
+                  </button>
+                  <button
+                    onClick={() =>
+                      insertExample("facetime-audio:example@email.com")
+                    }
+                    className="text-left w-full hover:bg-muted p-2 transition-colors"
+                  >
                     <code className="bg-muted px-1.5 py-0.5 font-mono text-sm">
                       facetime-audio:
                       <span className=" text-purple-500 font-bold">
                         [email]
                       </span>
                     </code>
-                  </p>
+                  </button>
                 </div>
                 <div>
                   <h2 className="text-lg font-semibold">Contact Info</h2>
-                  <p>
+                  <button
+                    onClick={() =>
+                      insertExample(
+                        "MECARD:N:John Doe;ADR:123 Main St;TEL:+1234567890;EMAIL:john@email.com;"
+                      )
+                    }
+                    className="text-left w-full hover:bg-muted p-2 transition-colors"
+                  >
                     <code className="bg-muted px-1.5 py-0.5 font-mono text-sm">
                       MECARD:N:
                       <span className=" text-purple-500 font-bold">[name]</span>
@@ -157,7 +196,30 @@ export default function Page() {
                       </span>
                       ;
                     </code>
-                  </p>
+                  </button>
+                </div>
+                <div>
+                  <h2 className="text-lg font-semibold">Wi-Fi</h2>
+                  <button
+                    onClick={() =>
+                      insertExample("wifi:S:NetworkName;T:WPA;P:password;;")
+                    }
+                    className="text-left w-full hover:bg-muted p-2 rounded transition-colors"
+                  >
+                    <code className="bg-muted px-1.5 py-0.5 font-mono text-sm">
+                      wifi:S:
+                      <span className=" text-purple-500 font-bold">[ssid]</span>
+                      ;T:
+                      <span className=" text-purple-500 font-bold">
+                        [auth type]
+                      </span>
+                      ;P:
+                      <span className=" text-purple-500 font-bold">
+                        [password]
+                      </span>
+                      ;;
+                    </code>
+                  </button>
                 </div>
               </div>
             </DialogContent>
