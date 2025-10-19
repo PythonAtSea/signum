@@ -6,8 +6,8 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-xl font-bold">
-        An interactive exploration of two different encoding systems, from very
-        different eras.
+        An interactive exploration of three different ways of encoding text for
+        transmission.
       </h1>
       <Art />
       <div className="gap-2 flex flex-col">
@@ -26,7 +26,7 @@ export default function Home() {
               href="/eng-to-morse"
               className="text-2xl font-bold text-blue-500 hover:underline w-fit"
             >
-              English {`=>`} Morse Code
+              English {`==>`} Morse Code
             </Link>
           </li>
           <li>
@@ -34,7 +34,7 @@ export default function Home() {
               href="/morse-to-eng"
               className="text-2xl font-bold text-blue-500 hover:underline w-fit"
             >
-              Morse Code {`=>`} English
+              Morse Code {`==>`} English
             </Link>
           </li>
         </ul>
@@ -56,6 +56,19 @@ export default function Home() {
               className="text-2xl font-bold text-blue-500 hover:underline w-fit"
             >
               ASCII {`<=>`} English
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <div className="gap-2 flex flex-col">
+        <h2 className="font-bold text-lg">QR Codes:</h2>
+        <ul className="gap-2 flex flex-col list-disc list-inside">
+          <li>
+            <Link
+              href="/qr-code"
+              className="text-2xl font-bold text-blue-500 hover:underline w-fit"
+            >
+              Text {`==>`} QR Code
             </Link>
           </li>
         </ul>
