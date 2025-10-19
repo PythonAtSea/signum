@@ -65,6 +65,14 @@ export default function Home() {
         <ul className="gap-2 flex flex-col list-disc list-inside">
           <li>
             <Link
+              href="/qr-history"
+              className="text-2xl font-bold text-blue-500 hover:underline w-fit"
+            >
+              QR Code History
+            </Link>
+          </li>
+          <li>
+            <Link
               href="/qr-code"
               className="text-2xl font-bold text-blue-500 hover:underline w-fit"
             >
