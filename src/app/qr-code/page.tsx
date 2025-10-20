@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Select,
   SelectContent,
@@ -65,107 +66,91 @@ export default function Page() {
               <DialogHeader>
                 <DialogTitle>QR code data types</DialogTitle>
               </DialogHeader>
-              <div className="space-y-4">
+              <ScrollArea className="space-y-4 max-h-96">
                 <div>
                   <h2 className="text-lg font-semibold">Website</h2>
                   <button
-                    onClick={() => insertExample("https://example.com")}
+                    onClick={() => insertExample("https://[url]")}
                     className="text-left w-full hover:bg-muted p-2 transition-colors"
                   >
                     <code className="bg-muted px-1.5 py-0.5 font-mono text-sm">
                       https://
-                      <span className=" text-purple-500 font-bold">[url]</span>
+                      <span className=" text-green-500 font-bold">[url]</span>
                     </code>
                   </button>
                 </div>
                 <div>
                   <h2 className="text-lg font-semibold">Email</h2>
                   <button
-                    onClick={() => insertExample("mailto:example@email.com")}
+                    onClick={() => insertExample("mailto:[email]")}
                     className="text-left w-full hover:bg-muted p-2 transition-colors"
                   >
                     <code className="bg-muted px-1.5 py-0.5 font-mono text-sm">
                       mailto:
-                      <span className=" text-purple-500 font-bold">
-                        [email]
-                      </span>
+                      <span className=" text-green-500 font-bold">[email]</span>
                     </code>
                   </button>
                 </div>
                 <div>
                   <h2 className="text-lg font-semibold">Phone Number</h2>
                   <button
-                    onClick={() => insertExample("tel:+1234567890")}
+                    onClick={() => insertExample("tel:[phone]")}
                     className="text-left w-full hover:bg-muted p-2 colors"
                   >
                     <code className="bg-muted px-1.5 py-0.5 font-mono text-sm">
                       tel:
-                      <span className=" text-purple-500 font-bold">
-                        [phone]
-                      </span>
+                      <span className=" text-green-500 font-bold">[phone]</span>
                     </code>
                   </button>
                 </div>
                 <div>
                   <h2 className="text-lg font-semibold">SMS</h2>
                   <button
-                    onClick={() => insertExample("sms:+1234567890")}
+                    onClick={() => insertExample("sms:[phone]")}
                     className="text-left w-full hover:bg-muted p-2 transition-colors"
                   >
                     <code className="bg-muted px-1.5 py-0.5 font-mono text-sm">
                       sms:
-                      <span className=" text-purple-500 font-bold">
-                        [phone]
-                      </span>
+                      <span className=" text-green-500 font-bold">[phone]</span>
                     </code>
                   </button>
                 </div>
                 <div>
                   <h2 className="text-lg font-semibold">Facetime</h2>
                   <button
-                    onClick={() => insertExample("facetime:+1234567890")}
+                    onClick={() => insertExample("facetime:[phone]")}
                     className="text-left w-full hover:bg-muted p-2 transition-colors"
                   >
                     <code className="bg-muted px-1.5 py-0.5 font-mono text-sm">
                       facetime:
-                      <span className=" text-purple-500 font-bold">
-                        [phone]
-                      </span>
+                      <span className=" text-green-500 font-bold">[phone]</span>
                     </code>
                   </button>
                   <button
-                    onClick={() => insertExample("facetime:example@email.com")}
+                    onClick={() => insertExample("facetime:[email]")}
                     className="text-left w-full hover:bg-muted p-2 transition-colors"
                   >
                     <code className="bg-muted px-1.5 py-0.5 font-mono text-sm">
                       facetime:
-                      <span className=" text-purple-500 font-bold">
-                        [email]
-                      </span>
+                      <span className=" text-green-500 font-bold">[email]</span>
                     </code>
                   </button>
                   <button
-                    onClick={() => insertExample("facetime-audio:+1234567890")}
+                    onClick={() => insertExample("facetime-audio:[phone]")}
                     className="text-left w-full hover:bg-muted p-2 transition-colors"
                   >
                     <code className="bg-muted px-1.5 py-0.5 font-mono text-sm">
                       facetime-audio:
-                      <span className=" text-purple-500 font-bold">
-                        [phone]
-                      </span>
+                      <span className=" text-green-500 font-bold">[phone]</span>
                     </code>
                   </button>
                   <button
-                    onClick={() =>
-                      insertExample("facetime-audio:example@email.com")
-                    }
+                    onClick={() => insertExample("facetime-audio:[email]")}
                     className="text-left w-full hover:bg-muted p-2 transition-colors"
                   >
                     <code className="bg-muted px-1.5 py-0.5 font-mono text-sm">
                       facetime-audio:
-                      <span className=" text-purple-500 font-bold">
-                        [email]
-                      </span>
+                      <span className=" text-green-500 font-bold">[email]</span>
                     </code>
                   </button>
                 </div>
@@ -174,26 +159,22 @@ export default function Page() {
                   <button
                     onClick={() =>
                       insertExample(
-                        "MECARD:N:John Doe;ADR:123 Main St;TEL:+1234567890;EMAIL:john@email.com;"
+                        "MECARD:N:[name];ADR:[address];TEL:[phone];EMAIL:[email];"
                       )
                     }
                     className="text-left w-full hover:bg-muted p-2 transition-colors"
                   >
                     <code className="bg-muted px-1.5 py-0.5 font-mono text-sm">
                       MECARD:N:
-                      <span className=" text-purple-500 font-bold">[name]</span>
+                      <span className=" text-green-500 font-bold">[name]</span>
                       ;ADR:
-                      <span className=" text-purple-500 font-bold">
+                      <span className=" text-green-500 font-bold">
                         [address]
                       </span>
                       ;TEL:
-                      <span className=" text-purple-500 font-bold">
-                        [phone]
-                      </span>
+                      <span className=" text-green-500 font-bold">[phone]</span>
                       ;EMAIL:
-                      <span className=" text-purple-500 font-bold">
-                        [email]
-                      </span>
+                      <span className=" text-green-500 font-bold">[email]</span>
                       ;
                     </code>
                   </button>
@@ -202,26 +183,44 @@ export default function Page() {
                   <h2 className="text-lg font-semibold">Wi-Fi</h2>
                   <button
                     onClick={() =>
-                      insertExample("wifi:S:NetworkName;T:WPA;P:password;;")
+                      insertExample("wifi:S:[ssid];T:[auth type];P:[password];")
                     }
                     className="text-left w-full hover:bg-muted p-2 rounded transition-colors"
                   >
                     <code className="bg-muted px-1.5 py-0.5 font-mono text-sm">
                       wifi:S:
-                      <span className=" text-purple-500 font-bold">[ssid]</span>
+                      <span className=" text-green-500 font-bold">[ssid]</span>
                       ;T:
-                      <span className=" text-purple-500 font-bold">
+                      <span className=" text-green-500 font-bold">
                         [auth type]
                       </span>
                       ;P:
-                      <span className=" text-purple-500 font-bold">
+                      <span className=" text-green-500 font-bold">
                         [password]
                       </span>
                       ;;
                     </code>
                   </button>
                 </div>
-              </div>
+                <div>
+                  <h2 className="text-lg font-semibold">Geo Location</h2>
+                  <button
+                    onClick={() => insertExample("geo:[latitude],[longitude]")}
+                    className="text-left w-full hover:bg-muted p-2 rounded transition-colors"
+                  >
+                    <code className="bg-muted px-1.5 py-0.5 font-mono text-sm">
+                      geo:
+                      <span className=" text-green-500 font-bold">
+                        [latitude]
+                      </span>
+                      ,
+                      <span className=" text-green-500 font-bold">
+                        [longitude]
+                      </span>
+                    </code>
+                  </button>
+                </div>
+              </ScrollArea>
             </DialogContent>
           </Dialog>
         </div>
@@ -254,7 +253,7 @@ export default function Page() {
               options={{
                 errorCorrectionLevel: errorCorrectionLevel,
                 margin: 2,
-                scale: 10,
+                scale: 20,
                 width: 400,
               }}
             />
