@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 
 const cascadiaCode = Cascadia_Code({
   variable: "--font-cascadia-code",
+  subsets: ["latin"],
   weight: ["400", "700"],
 });
 
